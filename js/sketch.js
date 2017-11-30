@@ -13,3 +13,9 @@ function draw() {
 
     maze.generate();
 }
+
+function keyPressed() {
+    if(this.key === '') {
+
+    }
+}
