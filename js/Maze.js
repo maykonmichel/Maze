@@ -15,6 +15,7 @@ function Maze(width, height, w) {
     this.current = this.rooms[0];
 
     this.show = function () {
+        this.current.hightlight();
         for (var k = 0; k < this.rooms.length; k++) {
             this.rooms[k].show();
         }
@@ -22,7 +23,6 @@ function Maze(width, height, w) {
 
     this.generate = function () {
         this.current.visited = true;
-        this.current.hightlight();
 
         var exit = this.current.getRandomExit();
         if (exit) {
@@ -35,7 +35,10 @@ function Maze(width, height, w) {
 
         if (!this.current) {
             this.rooms[this.rooms.length - 1].doors[1] = false;
+            this.current = this.rooms[0];
+            return true;
         }
+        return false;
     };
 
     this.index = function (col, row) {
@@ -47,5 +50,12 @@ function Maze(width, height, w) {
 
     this.getRoom = function (col, row) {
         return this.rooms[this.index(col, row)];
+    };
+
+    this.move = function (direction) {
+        var cr = [[0, 1, 0, -1], [-1, 0, 1, 0]];
+        if(!this.current.doors[direction]) {
+            this.current = this.getRoom(this.current.col+cr[0][direction], this.current.row+cr[1][direction]);
+        }
     };
 }

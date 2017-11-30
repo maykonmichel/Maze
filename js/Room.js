@@ -35,7 +35,7 @@ function Room(col, row, w) {
 
         var xy = [[0, w, w, 0], [0, 0, w, w]];
         for(var k=0; k<4; k++) {
-            if(this.doors[k]/* && this.visited*/) {
+            if(this.doors[k] && this.visited) {
                 line(this.x + xy[0][k], this.y + xy[1][k], this.x + xy[0][(k + 1) % 4], this.y + xy[1][(k + 1) % 4]);
             }
         }
