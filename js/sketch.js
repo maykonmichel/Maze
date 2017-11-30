@@ -4,7 +4,7 @@ var start;
 function setup() {
     createCanvas(1301, 601);
 
-    maze = new Maze(width, height, 10);
+    maze = new Maze(width, height, 50);
     start = false;
 }
 
@@ -17,7 +17,6 @@ function draw() {
     }
 
     start = true;
-
 }
 
 function keyPressed() {
@@ -27,15 +26,19 @@ function keyPressed() {
 
     switch (this.key) {
         case 'W':
+        case '&':
             maze.move(0);
             break;
         case 'D':
+        case '\'':
             maze.move(1);
             break;
         case 'S':
+        case '(':
             maze.move(2);
             break;
         case 'A':
+        case ']':
             maze.move(3);
             break;
     }
